@@ -1,0 +1,34 @@
+#required
+#===============================================================================
+
+# Database Config
+es-admin.datasource.username           es_admin
+es-admin.datasource.password           TODO
+es-admin.datasource.driverClassName    oracle.jdbc.OracleDriver
+es-admin.datasource.url                jdbc:oracle:thin:@${environment-name-prefix}-db-test.ifactornotifi.com:1521:es
+es-admin.datasource.initialSize        10
+es-admin.datasource.maxActive          100
+es-admin.datasource.validationQuery    SELECT 1 FROM DUAL
+es-admin.datasource.validationInterval 60000
+es-admin.datasource.testOnBorrow       true
+es-admin.hibernate.dialect             org.hibernate.dialect.Oracle10gDialect
+
+# UI Customization
+es-admin.impl.ui.logoUrl    resources/Login/prod/assets/images/logo.png
+
+# App Config
+es-admin.password-reset=false
+
+# AWS Confg
+es-admin.aws.access-key=
+es-admin.aws.secret-key=
+
+# Template Config
+es-admin.template.bucket=
+es-admin.template.prefix=
+es-admin.template.application-url=
+
+# Sendgrid Config
+es-admin.sendgrid.api-user=
+es-admin.sendgrid.api-key=
+es-admin.sendgrid.from=

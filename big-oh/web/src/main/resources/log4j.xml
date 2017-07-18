@@ -1,0 +1,52 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//LOG4J//DTD LOG4J//EN" "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd" >
+<log4j:configuration>
+    <appender name="file" class="org.apache.log4j.FileAppender">
+        <param name="File" value="${symbol_dollar}{catalina.home}/logs/bigoh.log" />
+        <param name="MaxFileSize" value="10MB" />
+        <param name="MaxBackupIndex" value="5" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{dd MMM yyyy HH:mm:ss}] [%t] %-5p %c %x - %m%n"/>
+        </layout>
+    </appender>
+
+	<logger name="org.hibernate">
+		<level value="INFO" />
+	</logger>
+
+	<logger name="org.hibernate.SQL">
+		<level value="INFO" />
+	</logger>
+
+    <logger name="org.springframework.jdbc.core.JdbcTemplate">
+        <level value="INFO" />
+    </logger>
+
+	<logger name="org.hibernate.stat">
+		<level value="INFO" />
+	</logger>
+
+	<logger name="org.hibernate.cache">
+		<level value="INFO" />
+	</logger>
+
+	<logger name="org.springframework.beans">
+		<level value="INFO" />
+	</logger>
+
+	<logger name="org.springframework.transaction">
+		<level value="INFO" />
+	</logger>
+
+	<logger name="com.ifactorconsulting.bigoh">
+		<level value="INFO" />
+	</logger>
+
+	<root>
+		<priority value="INFO" />
+		<appender-ref ref="file" />
+	</root>
+</log4j:configuration>

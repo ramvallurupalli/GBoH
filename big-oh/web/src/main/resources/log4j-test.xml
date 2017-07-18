@@ -1,0 +1,78 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//LOG4J//DTD LOG4J//EN" "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd" >
+<log4j:configuration>
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{dd MMM yyyy HH:mm:ss}] [%t] %-5p %c %x - %m%n"/>
+		</layout>
+	</appender>
+
+    <appender name="file" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="${symbol_dollar}{catalina.home}/logs/bigoh.log" />
+        <param name="MaxFileSize" value="10MB" />
+        <param name="MaxBackupIndex" value="10" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{dd MMM yyyy HH:mm:ss}] [%t] %-5p %c %x - %m%n"/>
+        </layout>
+    </appender>
+
+    <logger name="org.hibernate.SQL">
+		<level value="INFO" />
+	</logger>
+
+    <logger name="org.hibernate">
+        <level value="INFO" />
+    </logger>
+
+    <logger name="org.springframework.web.context.support">
+		<level value="ERROR" />
+	</logger>
+
+	<logger name="com.ifactorconsulting.notifi.event.EventCreationEngine">
+		<level value="INFO" />
+	</logger>
+
+	<logger name="org.springframework.ws.server.endpoint.interceptor.PayloadLoggingInterceptor">
+		<level value="INFO" />
+	</logger>
+
+	<logger name="org.springframework.ws.soap.server.endpoint.interceptor.SoapEnvelopeLoggingInterceptor">
+		<level value="INFO" />
+	</logger>
+
+	<!--changes you can make to assist with load testing timings and general web-service debugging-->
+
+	<logger name="com.ifactorconsulting.notifi.controller.ProfileController">
+		<!--<level value="TRACE"  />-->
+	</logger>
+
+	<logger name="com.ifactorconsulting.notifi.controller.SubscriptionAuditController">
+		<!--<level value="TRACE" />-->
+	</logger>
+
+	<!--
+	if you want to track incoming web service requests, turn on
+	JVM arg -Dcom.sun.xml.ws.transport.http.HttpAdapter.dump=true
+	as described in  https://github.com/iFactor/notifi/wiki/Debugging-Web-Services-using-java-args
+	-->
+
+	<logger name="com.ifactorconsulting.notifi.controller.SmsInboundController">
+		<!--<level value="TRACE" />-->
+	</logger>
+
+	<logger name="com.ifactorconsulting.notifi.controller.EmailInboundController">
+		<!--<level value="TRACE" />-->
+	</logger>
+
+	<logger name="com.ifactorconsulting.notifi.channel.sybase">
+		<!--<level value="DEBUG" />-->
+	</logger>
+
+	<root>
+		<priority value="INFO" />
+		<appender-ref ref="file" />
+	</root>
+</log4j:configuration>

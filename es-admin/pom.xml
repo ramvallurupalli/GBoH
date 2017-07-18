@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <artifactId>${company-name}-es-admin</artifactId>
+    <groupId>${groupId}.${company-name}</groupId>
+    <version>${version}</version>
+    <modelVersion>4.0.0</modelVersion>
+
+	<packaging>war</packaging>
+
+    <name>${company-name} ES Admin</name>
+	<description>${company-name} Migration scripts for es-admin database</description>
+
+	<properties>
+		<energysuite-nexus.base.url>http://dev.ifactornotifi.com</energysuite-nexus.base.url>
+		<flyway.version>2.2.1</flyway.version>
+		<es-admin.version>${es-admin-version}</es-admin.version>
+	</properties>
+
+	<scm>
+		<url>https://github.com/iFactor/${company-name}-es</url>
+		<developerConnection>scm:git:git@github.com:iFactor/${company-name}-es.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+
+	<distributionManagement>
+		<!-- Publish releases here -->
+		<repository>
+			<id>energysuite-nexus</id>
+			<name>Energy Suite Nexus</name>
+			<url>${energysuite-nexus.base.url}/nexus/content/repositories/releases</url>
+		</repository>
+
+		<!-- Publish snapshots here -->
+		<snapshotRepository>
+			<id>energysuite-nexus</id>
+			<name>Energy Suite Nexus</name>
+			<url>${energysuite-nexus.base.url}/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<!-- download artifacts from this repo -->
+    <repositories>
+        <repository>
+            <id>energysuite-nexus</id>
+            <name>Energy Suite artifacts</name>
+            <url>${energysuite-nexus.base.url}/nexus/content/groups/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+	<!-- download plugins from this repo -->
+	<pluginRepositories>
+		<pluginRepository>
+			<id>energysuite-nexus</id>
+			<name>Energy Suite plugins</name>
+			<url>${energysuite-nexus.base.url}/nexus/content/groups/public</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.ifactorconsulting.es</groupId>
+			<artifactId>es-admin-core</artifactId>
+			<version>${es-admin.version}</version>
+			<classifier>sources</classifier>
+		</dependency>
+		<dependency>
+			<groupId>com.ifactorconsulting.es</groupId>
+			<artifactId>es-admin-core</artifactId>
+			<version>${es-admin.version}</version>
+			<type>war</type>
+		</dependency>
+	</dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.googlecode.flyway</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>${flyway.version}</version>
+                <configuration>
+                    <url>${db.url}</url>
+                    <locations>
+						<!--Gets product es-admin flyway scripts-->
+                        <location>db/oracle</location>
+						<!--Gets implementation es-admin flyway scripts that are common across all environments-->
+						<location>db/impl/oracle/common</location>
+						<!--Gets implementation es-admin flyway scripts for the maven profile's environment-->
+						<location>db/impl/oracle/${db.environment}</location>
+                    </locations>
+                </configuration>
+                <dependencies>
+			        <dependency>
+				        <groupId>com.oracle</groupId>
+				        <artifactId>ojdbc6</artifactId>
+				        <version>11.2.0.3</version>
+			        </dependency>
+		        </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+</project>

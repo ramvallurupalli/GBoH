@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- NOTE: this bigoh-client module is only required if extending the big-oh data model; module can be removed otherwise.    -->
+
+    <parent>
+        <artifactId>${company-name}-bigoh</artifactId>
+        <groupId>${groupId}.bigoh.${company-name}</groupId>
+        <version>${version}</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>${company-name}-bigoh-client</artifactId>
+    <packaging>jar</packaging>
+
+    <name>${company-name} BigOh Client</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.ifactorconsulting.big-oh</groupId>
+            <artifactId>client</artifactId>
+        </dependency>
+    </dependencies>
+
+
+</project>

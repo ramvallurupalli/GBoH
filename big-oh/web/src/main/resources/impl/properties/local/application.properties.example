@@ -1,0 +1,6 @@
+bigoh.datasource.username           bigoh
+bigoh.datasource.password           Password0
+bigoh.datasource.url                jdbc:oracle:thin:@localhost:1521/xe
+bigoh.redis.host                    localhost
+batch.outage.directory              TODO
+

@@ -1,0 +1,65 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+{
+  "servers": {
+    "dev": {
+      "host": "${environment-name-prefix}-dev.ifactornotifi.com",
+      "username": "didi7",
+      "type": "snapshot",
+      "apps": ["bigoh", "notifi","stitch-notifi","es-admin","preferences","blitz"]
+    },
+    "test": {
+      "host": "${environment-name-prefix}-test.ifactornotifi.com",
+      "username": "didi7",
+      "type": "release",
+      "apps": ["bigoh", "notifi","stitch-notifi","es-admin","preferences","blitz"]
+
+    },
+    "prod": {
+      "host": "${environment-name-prefix}.ifactornotifi.com",
+      "username": "didi7",
+      "type": "release",
+      "apps": ["bigoh", "notifi","stitch-notifi","es-admin","preferences","blitz"]
+
+    }
+  },
+  "applications": {
+    "notifi": {
+      "artifact": "${company-name}-notifi-web",
+      "groupId": "${groupId}.notifi.${company-name}",
+      "contextPath": "notifi",
+      "hotDeploy": false
+    },
+    "bigoh": {
+      "artifact": "${company-name}-bigoh-web",
+      "groupId": "${groupId}.bigoh.${company-name}",
+      "contextPath": "oh",
+      "hotDeploy": true
+    },
+    "stitch-notifi": {
+      "artifact": "${company-name}-stitch",
+      "groupId": "${groupId}.stitch.${company-name}",
+      "contextPath": "sl",
+      "hotDeploy": true
+    },
+    "es-admin": {
+      "artifact": "es-admin-core",
+      "groupId": "com.ifactorconsulting.es",
+      "contextPath": "admin/es",
+      "hotDeploy": true
+    },
+    "preferences": {
+      "artifact": "notifi-preference-gui",
+      "groupId": "com.ifactorconsulting.notifi",
+      "contextPath": "preferences",
+      "hotDeploy": true
+    },
+    "blitz": {
+      "artifact": "blitz-core",
+      "groupId": "com.ifactorconsulting.blitz",
+      "contextPath": "blitz",
+      "hotDeploy": true
+    }
+  }
+}

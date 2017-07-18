@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:element name="outages">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="outageWrapper" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="outage" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="startedAt" minOccurs="0" type="xs:dateTime"></xs:element>
+                                        <xs:element name="etr" minOccurs="0" type="xs:dateTime"></xs:element>
+                                        <xs:element minOccurs="0" name="etrConfidenceLevel">
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:enumeration value="HIGH"/>
+                                                    <xs:enumeration value="MEDIUM"/>
+                                                    <xs:enumeration value="LOW"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="totalCustOut" minOccurs="0" type="xs:int"></xs:element>
+                                        <xs:element name="cause" minOccurs="0" type="xs:string"></xs:element>
+                                        <xs:element name="causeShort" minOccurs="0" type="xs:string"></xs:element>
+                                        <xs:element name="crewId" minOccurs="0" type="xs:string"></xs:element>
+                                        <xs:element name="crewStatus" minOccurs="0" type="xs:string"></xs:element>
+                                        <xs:element name="crewStatusAt" minOccurs="0" type="xs:dateTime"></xs:element>
+                                        <xs:element name="comments" minOccurs="0" type="xs:string"></xs:element>
+                                        <xs:element name="commentsInternal" minOccurs="0" type="xs:string"></xs:element>
+                                        <xs:element name="affectedDevices" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="device" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="id" type="xs:string"></xs:attribute>
+                                                            <xs:attribute name="reported" type="xs:boolean"></xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="id" type="xs:string"></xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="restorationWrapper" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="restoration" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="restoredAt" type="xs:dateTime"></xs:element>
+                                        <xs:element name="cause" type="xs:string"></xs:element>
+                                        <xs:element name="affectedDevices" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="device" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="id" type="xs:string"></xs:attribute>
+                                                            <xs:attribute name="reported" type="xs:boolean"></xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="id" type="xs:string"></xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="cancellationWrapper" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="cancellation" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="cancelledAt" minOccurs="0" type="xs:dateTime"></xs:element>
+                                        <xs:element name="affectedDevices" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="device" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="id" type="xs:string"></xs:attribute>
+                                                            <xs:attribute name="reported" type="xs:boolean"></xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="id" type="xs:string"></xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

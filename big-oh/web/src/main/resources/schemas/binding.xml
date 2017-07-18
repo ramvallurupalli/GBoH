@@ -1,0 +1,15 @@
+<jaxb:bindings
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+        version="2.1">
+
+    <jaxb:globalBindings>
+        <jaxb:javaType name="org.joda.time.LocalDate" xmlType="xs:date"
+                       parseMethod="org.joda.time.LocalDate.parse"
+                       printMethod="com.ifactorconsulting.zest.xml.adapter.LocalDateAdapter.asString" />
+        <jaxb:javaType name="org.joda.time.DateTime" xmlType="xs:dateTime"
+                       parseMethod="org.joda.time.DateTime.parse"
+                       printMethod="com.ifactorconsulting.zest.xml.adapter.DateTimeAdapter.asString" />
+    </jaxb:globalBindings>
+
+</jaxb:bindings>

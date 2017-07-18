@@ -1,0 +1,26 @@
+oracledb:
+  image: ifactor/oracle-db
+  ports:
+    - "1521:1521"
+
+dynamodb:
+  image: deangiberson/aws-dynamodb-local
+  ports:
+    - "8000:8000"
+
+redis:
+  image: redis:3.0.0
+  ports:
+    - "6379:6379"
+
+sqs:
+  image: ifactor/elasticmq
+  ports:
+    - "9324:9324"
+
+s3:
+  image: lphoward/fake-s3
+  volumes:
+    - s3:/fakes3_root
+  ports:
+    - "4569:4569"

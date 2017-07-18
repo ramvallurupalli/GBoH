@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>${groupId}</groupId>
+    <artifactId>${company-name}-es</artifactId>
+    <version>${version}</version>
+    <packaging>pom</packaging>
+
+    <name>${company-name} Energy Suite Root</name>
+    <description>Root project for ${company-name} ES Implementation</description>
+
+    <scm>
+        <url>https://github.com/iFactor/${company-name}-es</url>
+        <developerConnection>scm:git:git@github.com:iFactor/${company-name}-es.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <distributionManagement>
+        <!-- Publish releases here -->
+        <repository>
+            <id>energysuite-nexus</id>
+            <name>Energy Suite Nexus</name>
+            <url>${energysuite-nexus.base.url}/nexus/content/repositories/releases</url>
+        </repository>
+
+        <!-- Publish snapshots here -->
+        <snapshotRepository>
+            <id>energysuite-nexus</id>
+            <name>Energy Suite Nexus</name>
+            <url>${energysuite-nexus.base.url}/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <!-- download artifacts from this repo -->
+    <repositories>
+        <repository>
+            <id>energysuite-nexus</id>
+            <name>Energy Suite artifacts</name>
+            <url>${energysuite-nexus.base.url}/nexus/content/groups/public</url>
+            <releases>
+            </releases>
+            <snapshots>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <!-- download plugins from this repo -->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>energysuite-nexus</id>
+            <name>Energy Suite plugins</name>
+            <url>${energysuite-nexus.base.url}/nexus/content/groups/public</url>
+            <releases>
+            </releases>
+            <snapshots>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <properties>
+        <maven.javadoc.skip>true</maven.javadoc.skip>
+        <energysuite-nexus.base.url>http://dev.ifactornotifi.com</energysuite-nexus.base.url>
+        <java.version>${java-version}</java.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.0</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <includes>
+                        <include>target/generated-sources/**</include>
+                    </includes>
+                </configuration>
+            </plugin>
+            <!-- <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>${maven-release-plugin.version}</version>
+                <configuration>
+                    <tagNameFormat>notifi/v@{project.version}</tagNameFormat>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                </configuration>
+            </plugin> -->
+        </plugins>
+    </build>
+</project>
